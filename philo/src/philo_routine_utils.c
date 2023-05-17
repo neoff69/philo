@@ -6,7 +6,7 @@
 /*   By: vgonnot <vgonnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 12:18:36 by vgonnot           #+#    #+#             */
-/*   Updated: 2023/03/06 18:24:07 by vgonnot          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:47:46 by vgonnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	lock_and_mutex(t_philo *mid_philo, t_philo *left_philo, \
 						t_philo *philo_print)
 {
 	pthread_mutex_lock(&left_philo->mutex_fork);
-	print_action_terminal("has taken a fork\n", philo_print);
+	print_action_terminal("has taken a fork\n", philo_print, 0);
 	pthread_mutex_lock(&mid_philo->mutex_fork);
-	print_action_terminal("has taken a fork\n", philo_print);
+	print_action_terminal("has taken a fork\n", philo_print, 0);
 }
 
 void	mutex_lock(t_philo *philo, t_philo *left_philo)
@@ -43,6 +43,7 @@ void	mutex_lock(t_philo *philo, t_philo *left_philo)
 
 void	mutex_unlock(t_philo *philo, t_philo *left_philo)
 {
+
 	if (philo->mid_lock == 1)
 	{
 		pthread_mutex_unlock(&philo->mutex_fork);
@@ -53,6 +54,8 @@ void	mutex_unlock(t_philo *philo, t_philo *left_philo)
 		pthread_mutex_unlock(&left_philo->mutex_fork);
 		philo->left_lock = 0;
 	}
+	usleep(usleep(philo->time_eat / 2)); 
+	
 }
 
 int	quit_thread(t_philo *philo, t_philo *left_philo)

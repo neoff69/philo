@@ -6,7 +6,7 @@
 /*   By: vgonnot <vgonnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 10:03:18 by vgonnot           #+#    #+#             */
-/*   Updated: 2023/02/28 10:54:24 by vgonnot          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:47:06 by vgonnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int					mutex_init(t_philo *philo);
 int					mutex_destroy(t_philo *philo);
 void				mutex_lock(t_philo *philo, t_philo *left_philo);
 void				mutex_unlock(t_philo *philo, t_philo *left_philo);
-int					print_action_terminal(char *str, t_philo *philo);
+int					print_action_terminal(char *str, t_philo *philo, int force_print);
 int					check_stop(t_philo *philo);
 int					quit_thread(t_philo *philo, t_philo *left_philo);
 

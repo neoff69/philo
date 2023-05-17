@@ -23,7 +23,7 @@ OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)
 
 	
 GCC						= cc
-CFLAGS					= -Wall -Wextra -Werror -g3 -pthread
+CFLAGS					= -Wall -Wextra -Werror -g3 -pthread -fsanitize=thread
 
 RM 						= rm -rf
 CLEAR					= clear

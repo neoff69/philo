@@ -6,7 +6,7 @@
 /*   By: vgonnot <vgonnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 07:46:45 by vgonnot           #+#    #+#             */
-/*   Updated: 2023/02/28 09:28:35 by vgonnot          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:56:25 by vgonnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_dead(t_philo philo)
 	current_time = get_time(&philo);
 	if ((int)(current_time - philo.last_meal) >= philo.time_die)
 	{
-		print_action_terminal("died\n", &philo);
+		print_action_terminal("died\n", &philo, 1);
 		return (1);
 	}
 	return (0);
@@ -73,7 +73,7 @@ int	check_if_finish(t_philo *philo)
 		if (eat_enough == philo[0].nbr_philo)
 			return (set_stop(philo, i, 0));
 		pthread_mutex_lock(&philo[i].mutex);
-		if (is_dead(philo[i]))
+		if (is_dead(philo[i]) == 1)
 			return (set_stop(philo, i, 1));
 		else if (philo[i].stop)
 			return (set_stop(philo, i, 1));

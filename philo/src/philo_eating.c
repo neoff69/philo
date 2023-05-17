@@ -6,7 +6,7 @@
 /*   By: vgonnot <vgonnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 12:52:06 by vgonnot           #+#    #+#             */
-/*   Updated: 2023/03/06 14:53:12 by vgonnot          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:47:55 by vgonnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	eating_exec(t_philo *philo)
 	}
 	pthread_mutex_unlock(&philo->mutex);
 	philo->last_meal = get_time(philo);
-	print_action_terminal("is eating\n", philo);
+	print_action_terminal("is eating\n", philo, 0);
 	usleep(philo->time_eat * 1000);
 	if (philo->nbr_eat > 0)
 	{
@@ -47,7 +47,7 @@ static int	eating_exec(t_philo *philo)
 
 static void	sleeping_exec(t_philo *philo)
 {
-	print_action_terminal("is sleeping\n", philo);
+	print_action_terminal("is sleeping\n", philo, 0);
 	usleep(philo->time_sleep * 1000);
 }
 
