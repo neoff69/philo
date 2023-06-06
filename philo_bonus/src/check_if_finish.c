@@ -6,7 +6,7 @@
 /*   By: vgonnot <vgonnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:56:03 by vgonnot           #+#    #+#             */
-/*   Updated: 2023/03/06 18:04:27 by vgonnot          ###   ########.fr       */
+/*   Updated: 2023/06/06 20:08:21 by vgonnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	is_dead(t_struct *env, t_philo *philo)
 void	kill_childs(t_struct *env)
 {
 	free(env->philo);
-	kill(0, SIGTERM);
+	sem_close(env->sem_fork);
+	sem_close(env->sem_print);
+	sem_close(env->sem_queue);
+	kill(0, SIGKILL);
 }
 
 int	check_if_finish(t_struct *env, t_philo *philo)
@@ -38,6 +41,7 @@ int	check_if_finish(t_struct *env, t_philo *philo)
 		free(env->philo);
 		sem_close(env->sem_fork);
 		sem_close(env->sem_print);
+		sem_close(env->sem_queue);
 		exit (0);
 	}
 	else if (is_dead(env, philo))

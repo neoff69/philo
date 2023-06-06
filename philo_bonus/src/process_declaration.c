@@ -6,7 +6,7 @@
 /*   By: vgonnot <vgonnot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 07:33:36 by vgonnot           #+#    #+#             */
-/*   Updated: 2023/03/14 13:52:10 by vgonnot          ###   ########.fr       */
+/*   Updated: 2023/06/06 19:27:33 by vgonnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,12 @@ int	process_declaration(t_struct *env)
 		create_philo(env, i);
 		i++;
 	}
-	waitpid(0, NULL, 0);
+	i = 0;
+	while (i < env->nbr_philo)
+	{
+		waitpid(env->philo[i].pid, 0, 0);
+		i++;
+	}
 	semaphore_destroy(env);
 	return (0);
 }
